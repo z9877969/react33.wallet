@@ -1,0 +1,26 @@
+{
+  "incomesCatList": [
+    {
+      "title": "Зарплата",
+      "id": "salary"
+    },
+    {
+      "title": "Премия",
+      "id": "bonus"
+    }
+  ],
+  "costsCatList": [
+    {
+      "title": "Продукты",
+      "id": "prods"
+    },
+    {
+      "title": "Напитки",
+      "id": "drinks"
+    },
+    {
+      "title": "Разное",
+      "id": "other"
+    }
+  ]
+}

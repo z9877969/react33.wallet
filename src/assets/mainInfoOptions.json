@@ -1,0 +1,33 @@
+{
+  "costsInfoOptions": [
+    {
+      "title": "Сегодня",
+      "sum": " 0.00",
+      "name": "today"
+    },
+    {
+      "title": "Неделя",
+      "sum": " 0.00",
+      "name": "week"
+    },
+    {
+      "title": "Месяц",
+      "sum": " 0.00",
+      "name": "month"
+    }
+  ],
+  "incomesInfoOptions": [
+    {
+      "title": "Месяц",
+      "sum": " 0.00",
+      "name": "month"
+    }
+  ],
+  "balanceInfoOptions": [
+    {
+      "title": "Баланс",
+      "sum": " 0.00",
+      "name": "balance"
+    }
+  ]
+}

@@ -1,7 +1,25 @@
 import GoBackHeader from "../_share/GoBackHeader/GoBackHeader";
 import Button from "../_share/Button/Button";
+import { useState } from "react";
 
-const CategoriesListPage = ({ handleSetCategory, catsList }) => {
+const CategoriesListPage = ({ handleSetCategory, catsList, addCategory }) => {
+  const [category, setCategory] = useState("");
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setCategory(value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newCat = {
+      id: Date.now().toString(),
+      title: category,
+    };
+    addCategory(newCat);
+    setCategory("");
+  };
+
   return (
     <>
       <ul>
@@ -15,12 +33,12 @@ const CategoriesListPage = ({ handleSetCategory, catsList }) => {
           );
         })}
       </ul>
-      <form onSubmit={() => {}}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Новая категория..."
-          onChange={() => {}}
-          value=""
+          onChange={handleChange}
+          value={category}
         />
         <Button type="submit" title="AddCat" />
       </form>

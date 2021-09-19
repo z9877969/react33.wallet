@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import GoBackHeader from "../_share/GoBackHeader/GoBackHeader";
 import TransactionForm from "../TransactionForm/TransactionForm";
 import CategoriesListPage from "../_pages/CategoriesListPage";
-// import { costsCatList, incomesCatList } from "../../assets/categoriesList.json";
 
 const TransactionPage = ({
   transType,
   handleGoBack,
   addTransaction,
   addCategory,
-  setCategoriesColl,
   catsList,
 }) => {
   const [dataForm, setDataForm] = useState({
@@ -37,20 +35,6 @@ const TransactionPage = ({
   const handleSubmit = () => {
     addTransaction(dataForm);
   };
-
-  // useEffect(() => {
-    // if (!catsList.length) {
-    //   console.log("useEffect adds catList");
-    //   const parsedCategories = JSON.parse(
-    //     localStorage.getItem(transType + "Cat")
-    //   ); // costsCat
-    //   parsedCategories
-    //     ? setCategoriesColl(parsedCategories)
-    //     : setCategoriesColl(
-    //         transType === "costs" ? costsCatList : incomesCatList
-    //       );
-    // }
-  // }, []);
 
   return (
     <>

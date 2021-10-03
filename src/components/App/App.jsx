@@ -3,9 +3,9 @@ import {
   useLocalStorage,
   useLocalStorageForCategories,
 } from "../../hooks/useLocalStorage";
-import MainPage from "../_pages/MainPage";
-import TransactionPage from "../_pages/TransactionPage";
-import BalancePage from "../_pages/BalancePage";
+import MainPage from "../../pages/MainPage";
+import TransactionPage from "../../pages/TransactionPage";
+import BalancePage from "../../pages/BalancePage";
 
 import "./App.css";
 

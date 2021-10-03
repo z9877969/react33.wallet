@@ -4,6 +4,7 @@ const LabelInput = ({
   name,
   value,
   placeholder = null,
+  className,
   cbOnChange,
   cbOnClick,
 }) => {
@@ -12,6 +13,7 @@ const LabelInput = ({
       {title && <p>{title}</p>}
       {cbOnChange ? (
         <input
+          className={className && className}
           type={type}
           name={name}
           value={value}
@@ -19,7 +21,13 @@ const LabelInput = ({
           onChange={cbOnChange}
         />
       ) : (
-        <input type={type} name={name} value={value} onClick={cbOnClick} />
+        <input
+          className={className && className}
+          type={type}
+          name={name}
+          value={value}
+          onClick={cbOnClick}
+        />
       )}
     </label>
   );

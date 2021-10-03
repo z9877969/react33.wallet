@@ -1,7 +1,8 @@
 import { useState } from "react";
-import GoBackHeader from "../_share/GoBackHeader/GoBackHeader";
-import TransactionForm from "../TransactionForm/TransactionForm";
-import CategoriesListPage from "../_pages/CategoriesListPage";
+import GoBackHeader from "../components/_share/GoBackHeader/GoBackHeader";
+import TransactionForm from "../components/TransactionForm/TransactionForm";
+import CategoriesListPage from "./CategoriesListPage";
+import Section from "../components/_share/Section/Section";
 
 const TransactionPage = ({
   transType,
@@ -37,7 +38,7 @@ const TransactionPage = ({
   };
 
   return (
-    <>
+    <Section>
       <GoBackHeader
         handleGoBack={!isCatList ? handleGoBack : handleToggleCatList}
         title={
@@ -59,7 +60,7 @@ const TransactionPage = ({
           addCategory={addCategory}
         />
       )}
-    </>
+    </Section>
   );
 };
 

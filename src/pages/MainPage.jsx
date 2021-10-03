@@ -1,13 +1,14 @@
-import MainInfo from "../MainInfo/MainInfo";
+import MainInfo from "../components/MainInfo/MainInfo";
 import {
   costsInfoOptions,
   incomesInfoOptions,
   balanceInfoOptions,
-} from "../../assets/mainInfoOptions.json";
+} from "../assets/mainInfoOptions.json";
+import Section from "../components/_share/Section/Section";
 
 const MainPage = ({ handleOpenActivePage }) => {
   return (
-    <>
+    <Section>
       <h1>Журнал расходов</h1>
       <MainInfo
         handleOpenActivePage={handleOpenActivePage}
@@ -28,7 +29,7 @@ const MainPage = ({ handleOpenActivePage }) => {
         activePage="balance"
         infoOptions={balanceInfoOptions}
       />
-    </>
+    </Section>
   );
 };
 

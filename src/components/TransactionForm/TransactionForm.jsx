@@ -1,6 +1,6 @@
 import LabelInput from "../_share/LabelInput/LabelInput";
 import Button from "../_share/Button/Button";
-import { Component } from "react";
+import s from "./TransactionForm.module.scss";
 
 const TransactionForm = ({
   handleToggleCatList,
@@ -16,9 +16,10 @@ const TransactionForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Button title="OK" type="submit" />
+    <form className={s.form} onSubmit={handleSubmit}>
+      <Button title="OK" type="submit" className={s.btnOk}/>
       <LabelInput
+        className={s.label}
         title="День"
         type="date"
         name="date"
@@ -26,6 +27,7 @@ const TransactionForm = ({
         cbOnChange={handleChange}
       />
       <LabelInput
+        className={s.label}
         title="Время"
         type="time"
         name="time"
@@ -33,6 +35,7 @@ const TransactionForm = ({
         cbOnChange={handleChange}
       />
       <LabelInput
+        className={s.label}
         title="Категория"
         type="button"
         name="category"
@@ -40,6 +43,7 @@ const TransactionForm = ({
         cbOnClick={handleToggleCatList}
       />
       <LabelInput
+        className={s.label}
         title="Сумма"
         name="sum"
         value={sum}
@@ -47,6 +51,7 @@ const TransactionForm = ({
         cbOnChange={handleChange}
       />
       <LabelInput
+        className={s.label}
         title="Валюта"
         type="button"
         name="currency"
@@ -54,6 +59,7 @@ const TransactionForm = ({
         cbOnClick={() => {}}
       />
       <LabelInput
+        className={s.label}
         name="comment"
         value={comment}
         placeholder="Комментарии"

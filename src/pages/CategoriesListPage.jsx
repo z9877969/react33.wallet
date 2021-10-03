@@ -1,5 +1,5 @@
-import GoBackHeader from "../_share/GoBackHeader/GoBackHeader";
-import Button from "../_share/Button/Button";
+import GoBackHeader from "../components/_share/GoBackHeader/GoBackHeader";
+import Button from "../components/_share/Button/Button";
 import { useState } from "react";
 
 const CategoriesListPage = ({ handleSetCategory, catsList, addCategory }) => {

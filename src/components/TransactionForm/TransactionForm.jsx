@@ -3,7 +3,7 @@ import Button from "../_share/Button/Button";
 import s from "./TransactionForm.module.scss";
 
 const TransactionForm = ({
-  handleToggleCatList,
+  openCatListPage,
   handleChange,
   dataForm,
   cbOnSubmit,
@@ -17,7 +17,7 @@ const TransactionForm = ({
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
-      <Button title="OK" type="submit" className={s.btnOk}/>
+      <Button title="OK" type="submit" className={s.btnOk} />
       <LabelInput
         className={s.label}
         title="День"
@@ -40,7 +40,7 @@ const TransactionForm = ({
         type="button"
         name="category"
         value={category}
-        cbOnClick={handleToggleCatList}
+        cbOnClick={openCatListPage}
       />
       <LabelInput
         className={s.label}

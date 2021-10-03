@@ -1,73 +1,27 @@
-import { useState } from "react";
-import {
-  useLocalStorage,
-  useLocalStorageForCategories,
-} from "../../hooks/useLocalStorage";
+import { Route, Switch, Redirect } from "react-router-dom";
 import MainPage from "../../pages/MainPage";
 import TransactionPage from "../../pages/TransactionPage";
 import BalancePage from "../../pages/BalancePage";
-
 import "./App.css";
 
 const App = () => {
-  const [activePage, setActivePage] = useState("");
-
-  const [costs, setCosts] = useLocalStorage("costs", []);
-  const [incomes, setIncomes] = useLocalStorage("incomes", []);
-  const [costsCat, setCostsCat] = useLocalStorageForCategories(
-    activePage,
-    "costs"
+  return (
+    <Switch>
+      <Route path={"/transaction/:transType"} component={TransactionPage} />
+      <Route path="/balance" component={BalancePage} />
+      <Route exact path={"/"} component={MainPage} />
+      {/* <Route
+        exact
+        path={"/"}
+        render={(routeProps) => (
+          <MainPage
+            {...routeProps}
+          />
+        )}
+      /> */}
+      <Redirect to="/" />
+    </Switch>
   );
-  const [incomesCat, setIncomesCat] = useLocalStorageForCategories(
-    activePage,
-    "incomes"
-  );
-
-  const handleOpenActivePage = (activePage) => {
-    setActivePage(activePage);
-  };
-
-  const returnToMainPage = () => {
-    setActivePage("");
-  };
-
-  const addTransaction = (transaction) => {
-    activePage === "costs"
-      ? setCosts((prev) => [...prev, transaction])
-      : setIncomes((prev) => [...prev, transaction]);
-  };
-
-  const addCategory = (category) => {
-    activePage === "costs" && setCostsCat((prev) => [...prev, category]);
-    activePage === "incomes" && setIncomesCat((prev) => [...prev, category]);
-  };
-
-  switch (activePage) {
-    case "costs":
-      return (
-        <TransactionPage
-          handleGoBack={returnToMainPage}
-          addTransaction={addTransaction}
-          addCategory={addCategory}
-          transType={activePage}
-          catsList={costsCat}
-        />
-      );
-    case "incomes":
-      return (
-        <TransactionPage
-          handleGoBack={returnToMainPage}
-          addTransaction={addTransaction}
-          addCategory={addCategory}
-          transType={activePage}
-          catsList={incomesCat}
-        />
-      );
-    case "balance":
-      return <BalancePage />;
-    default:
-      return <MainPage handleOpenActivePage={handleOpenActivePage} />;
-  }
 };
 
 export default App;

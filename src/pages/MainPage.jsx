@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import MainInfo from "../components/MainInfo/MainInfo";
 import {
   costsInfoOptions,
@@ -40,6 +41,26 @@ const MainPage = ({ history, location }) => {
         activePage="balance"
         infoOptions={balanceInfoOptions}
       />
+      <Link
+        to={{
+          pathname: "/history/costs",
+          state: {
+            from: location,
+          },
+        }}
+      >
+        Все расходы
+      </Link>
+      <Link
+        to={{
+          pathname: "/history/incomes",
+          state: {
+            from: location,
+          },
+        }}
+      >
+        Все доходы
+      </Link>
     </Section>
   );
 };

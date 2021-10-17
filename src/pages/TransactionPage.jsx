@@ -12,8 +12,11 @@ import TransactionForm from "../components/TransactionForm/TransactionForm";
 import CategoriesListPage from "./CategoriesListPage";
 import Section from "../components/_share/Section/Section";
 import { useWrapper } from "../components/Provider/Provider";
+import { useDispatch } from "react-redux";
+import { addTransaction } from "../redux/transactions/transactionsOperations";
 
 const TransactionPage = ({ catsList }) => {
+  const dispatch = useDispatch();
   const { push, location } = useHistory();
   const match = useRouteMatch();
   const {
@@ -29,7 +32,7 @@ const TransactionPage = ({ catsList }) => {
     comment: "",
   });
 
-  const { addTransaction, setTransType } = useWrapper();
+  // const { addTransaction, setTransType } = useWrapper();
 
   const handleGoBack = () => push(location.state?.from || "/");
   const openCatListPage = () =>
@@ -51,14 +54,12 @@ const TransactionPage = ({ catsList }) => {
   };
 
   const handleSubmit = () => {
-    addTransaction({ ...dataForm, id: generate() });
+    dispatch(addTransaction({ transType, transaction: dataForm }));
     handleGoBack();
   };
 
-  useEffect(() => {
-    setTransType(transType);
-  }, []);
-
+  
+  
   return (
     <Section>
       <GoBackHeader
@@ -73,9 +74,7 @@ const TransactionPage = ({ catsList }) => {
       />
       <Switch>
         <Route path={match.path + "/cat-list"}>
-          <CategoriesListPage
-            handleSetCategory={handleSetCategory}
-          />
+          <CategoriesListPage handleSetCategory={handleSetCategory} />
         </Route>
         <Route exact path={match.path}>
           <TransactionForm

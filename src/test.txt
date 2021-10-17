@@ -1,0 +1,10 @@
+db: {
+    transactions: {
+        costs: {
+            "-INOQPH-aV_psbk3ZXEX": {transaction: 654654}
+        },
+        incomes: {},
+    }
+}
+
+https://react-33-default-rtdb.firebaseio.com/transactions/costs.json -> {transaction: 654654}

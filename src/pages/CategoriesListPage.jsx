@@ -2,13 +2,18 @@ import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import GoBackHeader from "../components/_share/GoBackHeader/GoBackHeader";
 import Button from "../components/_share/Button/Button";
-import { useWrapper } from "../components/Provider/Provider";
+import { addCategory } from "../redux/categories/categoriesOperations";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { getCategories } from "../redux/categories/categoriesSelectors";
+// import { useWrapper } from "../components/Provider/Provider";
 
 const CategoriesListPage = ({ handleSetCategory }) => {
+  const dispatch = useDispatch();
   // const location = useLocation();
   const { transType } = useParams();
   const [category, setCategory] = useState("");
-  const { addCategory, categories } = useWrapper();
+  const categories = useSelector(getCategories);
   const catsList = categories[transType + "Cat"];
 
   const handleChange = (e) => {
@@ -19,10 +24,11 @@ const CategoriesListPage = ({ handleSetCategory }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newCat = {
-      id: Date.now().toString(),
+      // id: Date.now().toString(),
       title: category,
     };
-    addCategory(newCat);
+    dispatch(addCategory({ transType, category: newCat }));
+
     setCategory("");
   };
 

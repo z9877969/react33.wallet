@@ -58,8 +58,6 @@ const TransactionPage = ({ catsList }) => {
     handleGoBack();
   };
 
-  
-  
   return (
     <Section>
       <GoBackHeader
@@ -78,10 +76,9 @@ const TransactionPage = ({ catsList }) => {
         </Route>
         <Route exact path={match.path}>
           <TransactionForm
-            transType={transType}
-            dataForm={dataForm}
-            handleChange={handleChange}
             openCatListPage={openCatListPage}
+            handleChange={handleChange}
+            dataForm={dataForm}
             cbOnSubmit={handleSubmit}
           />
         </Route>

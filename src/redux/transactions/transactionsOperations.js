@@ -2,6 +2,7 @@ import {
   addTransactionApi,
   getTransactionsApi,
 } from "../../utils/services/firebaseApi";
+import { errorHandler } from "../error/errorHandler";
 import {
   addCostsRequest,
   addCostsSuccess,
@@ -16,12 +17,14 @@ import {
 
 export const addTransaction =
   ({ transaction, transType }) =>
-  (dispatch) => {
+  (dispatch, getState) => {
     transType === "costs"
       ? dispatch(addCostsRequest())
       : dispatch(addIncomesRequest());
 
-    addTransactionApi({ transType, transaction })
+    const { idToken, localId } = getState().auth;
+
+    addTransactionApi({ transType, transaction, localId, idToken })
       .then(({ data }) =>
         transType === "costs"
           ? dispatch(addCostsSuccess({ id: data.name, ...transaction }))
@@ -34,10 +37,25 @@ export const addTransaction =
       );
   };
 
-export const getTransactions = () => (dispatch) => {
+export const getTransactions = () => (dispatch, getState) => {
   dispatch(getTransactionsRequest());
 
-  getTransactionsApi()
-    .then((data) => dispatch(getTransactionsSuccess(data)))
-    .catch((err) => dispatch(getTransactionsError(err.message)));
+  const { idToken, localId } = getState().auth;
+
+  getTransactionsApi({ localId, idToken })
+    .then((data) => {
+      console.log("data :>> ", data);
+      dispatch(getTransactionsSuccess(data));
+    })
+    // .catch((err) => dispatch(getTransactionsError(err.message)));
+    .catch((err) => {
+      console.log("object in dispatch");
+      dispatch(
+        errorHandler({
+          error: err,
+          cb: getTransactions,
+          errorType: "getTransactionsError",
+        })
+      );
+    });
 };

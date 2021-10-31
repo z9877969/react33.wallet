@@ -1,0 +1,31 @@
+{
+  "loginForm": [
+    {
+      "title": "Email",
+      "name": "email",
+      "placeholder": "Input email..."
+    },
+    {
+      "title": "Password",
+      "name": "password",
+      "placeholder": "Input password..."
+    }
+  ],
+  "registerForm": [
+    {
+      "title": "Name",
+      "name": "name",
+      "placeholder": "Input name..."
+    },
+    {
+      "title": "Email",
+      "name": "email",
+      "placeholder": "Input email..."
+    },
+    {
+      "title": "Password",
+      "name": "password",
+      "placeholder": "Input password..."
+    }
+  ]
+}

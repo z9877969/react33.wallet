@@ -4,17 +4,28 @@ import TransactionPage from "../../pages/TransactionPage";
 import BalancePage from "../../pages/BalancePage";
 import "./App.css";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getTransactions } from "../../redux/transactions/transactionsOperations";
 import TransactionsHistoryPage from "../../pages/TransactionsHistoryPage";
+import AuthPage from "../../pages/AuthPage";
+import { useState } from "react";
+import { getIsAuth } from "../../redux/auth/authSelectors";
 
 const App = () => {
   const dispatch = useDispatch();
+  const isAuth = useSelector(getIsAuth);
   useEffect(() => {
-    dispatch(getTransactions());
-  }, []);
+    isAuth && dispatch(getTransactions());
+  }, [isAuth]);
 
-  return (
+  // const [isAuth] = useState(false);
+
+  return !isAuth ? (
+    <Switch>
+      <Route path="/auth/:authType" component={AuthPage} />
+      <Redirect to="/auth/login" />
+    </Switch>
+  ) : (
     <Switch>
       <Route path={"/transaction/:transType"} component={TransactionPage} />
       <Route path={"/history/:transType"} component={TransactionsHistoryPage} />
